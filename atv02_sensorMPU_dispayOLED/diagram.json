@@ -1,0 +1,54 @@
+{
+  "version": 1,
+  "author": "Cauã",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-s3-devkitc-1", "id": "esp", "top": -0.18, "left": 129.37, "attrs": {} },
+    {
+      "type": "board-ssd1306",
+      "id": "oled1",
+      "top": 175.94,
+      "left": 422.63,
+      "attrs": { "i2cAddress": "0x3c" }
+    },
+    { "type": "wokwi-mpu6050", "id": "imu1", "top": -53.78, "left": 338.32, "attrs": {} },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 109.55,
+      "left": -38.4,
+      "attrs": { "value": "10000" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r2",
+      "top": 157.55,
+      "left": -38.4,
+      "attrs": { "value": "10000" }
+    },
+    { "type": "wokwi-microsd-card", "id": "sd1", "top": 211.43, "left": -105.53, "attrs": {} }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "sd1:DO", "esp:13", "green", [ "h144", "v-28.69" ] ],
+    [ "sd1:GND", "oled1:GND", "black", [ "h432", "v-57.49" ] ],
+    [ "sd1:SCK", "esp:12", "green", [ "h124.8", "v-57.61" ] ],
+    [ "sd1:DI", "esp:11", "green", [ "h105.6", "v-86.49" ] ],
+    [ "sd1:CS", "esp:10", "green", [ "h86.4", "v-105.54" ] ],
+    [ "oled1:SDA", "esp:8", "green", [ "v0" ] ],
+    [ "imu1:GND", "sd1:GND", "black", [ "v153.6", "h-38.32", "v134.4", "h-153.6" ] ],
+    [ "oled1:SCL", "esp:9", "blue", [ "v0" ] ],
+    [ "imu1:SDA", "esp:8", "green", [ "v-9.6", "h-268.72", "v192" ] ],
+    [ "imu1:SCL", "esp:9", "blue", [ "v-19.2", "h-287.92", "v230.4" ] ],
+    [ "r2:2", "esp:9", "blue", [ "v0" ] ],
+    [ "r1:2", "esp:8", "green", [ "v0", "h46.8", "v19.2" ] ],
+    [ "sd1:VCC", "esp:3V3", "red", [] ],
+    [ "oled1:VCC", "esp:3V3", "red", [] ],
+    [ "imu1:VCC", "esp:3V3", "red", [] ],
+    [ "sd1:GND", "esp:GND.1", "black", [] ],
+    [ "r1:1", "esp:3V3", "red", [] ],
+    [ "r2:1", "esp:3V3", "red", [] ]
+  ],
+  "dependencies": {}
+}
